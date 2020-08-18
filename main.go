@@ -40,6 +40,13 @@ func init() {
 	
 	if *logFilePath == "" {
 		log.SetOutput(ioutil.Discard)
+	} else {
+		f, err := os.OpenFile(*logFilePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+		if err != nil {
+			fmt.Printf("error opening file: %v\n", err)
+			os.Exit(3)
+		}
+		log.SetOutput(f)
 	}
 }
 
