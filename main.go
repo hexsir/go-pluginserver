@@ -91,7 +91,7 @@ func runServer(listener net.Listener) {
 func startServer() {
 	err := os.Remove(socket)
 	if err != nil && !os.IsNotExist(err) {
-		log.Printf(`removing "%s": %s`, kongPrefix, err)
+		log.Printf(`removing "%s": %v`, *kongPrefix, err)
 		return
 	}
 
